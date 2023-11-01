@@ -23,5 +23,8 @@ def root():
     return {"message": "V2 Route"}
 
 
-uvicorn.run(app, host="0.0.0.0", port=os.environ.get("PORT", 8080))
+
+# if __name__ == "_main_":     
+#     # app.run(debug=True, host="0.0.0.0", port=os.environ.get("PORT", 8080))     
+#     uvicorn.run(app, host="0.0.0.0", port=os.environ.get("PORT", 8080))
                                                          
