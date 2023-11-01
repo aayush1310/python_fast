@@ -1,0 +1,30 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  # Step 1 Collect the latest docker image from artifact repository
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker pull us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest || exit 0",
+      ]   
+  # Step 2 Build the Image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build       
+      - '--no-cache'       
+      - '--network=cloudbuild'       
+      - '-t'       
+      - 'us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest'       
+      - .       
+      - '-f'       
+      - Dockerfile     
+    id: Build   
+  # Step 3 Push Image to google registry   
+  - name: gcr.io/cloud-builders/docker     
+    args:       
+      [         
+          "push",         
+          "us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest"
+      ]
