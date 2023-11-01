@@ -7,7 +7,7 @@ steps:
     args:
       [
         "-c",
-        "docker pull us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest || exit 0",
+        "docker pull us-docker.pkg.dev/sacred-courier-403813/python/fast-api-sample:latest || exit 0",
       ]   
   # Step 2 Build the Image
   - name: gcr.io/cloud-builders/docker
@@ -16,7 +16,7 @@ steps:
       - '--no-cache'       
       - '--network=cloudbuild'       
       - '-t'       
-      - 'us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest'       
+      - 'us-docker.pkg.dev/sacred-courier-403813/python/fast-api-sample:latest'       
       - .       
       - '-f'       
       - Dockerfile     
@@ -26,5 +26,5 @@ steps:
     args:       
       [         
           "push",         
-          "us-docker.pkg.dev/sacred-courier-403813/python/fast_api_sample:latest"
+          "us-docker.pkg.dev/sacred-courier-403813/python/fast-api-sample:latest"
       ]
